@@ -1,9 +1,11 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import Link from "next/link";
 
-export default function Login() {
-
-  const navigate = useNavigate();
+// Fake functions taake aapka puraana login code bina kisi error ke foran chal jaye
+const useNavigate = () => () => {};
+const Link_Fake = ({ to, children, ...props }) => (
+  <Link href={to} {...props}>{children}</Link>
+);
 
   return (
     <div className="login-page">
@@ -34,4 +36,3 @@ export default function Login() {
 
     </div>
   );
-}

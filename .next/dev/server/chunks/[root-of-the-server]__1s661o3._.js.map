@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 40, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/Qasim/multi-page/src/app/api/hello/route.js"],"sourcesContent":["export async function GET() {\r\n  return Response.json({ message: \"Hello from Next.js API!\" });\r\n}"],"names":["GET","Response","json","message"],"mappings":";;;;AAAO,eAAeA;IACpB,OAAOC,SAASC,IAAI,CAAC;QAAEC,SAAS;IAA0B;AAC5D"}}]
+}

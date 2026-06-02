@@ -1,9 +1,11 @@
+"use client";
 import React from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import Link from "next/link";
+import { useRouter, usePathname } from "next/navigation";
 
 export default function Sidebar() {
-
-  const navigate = useNavigate();
+  const router = useRouter();
+  const pathname = usePathname(); // Yeh check karega ke kaunsa page active hai
 
   return (
     <div className="sidebar">
@@ -14,35 +16,37 @@ export default function Sidebar() {
 
       <div className="sidebar-links">
 
-        <NavLink to="/home">
-      Home
-        </NavLink>
+        <Link href="/" className={pathname === "/" ? "active" : ""}>
+          Home
+        </Link>
 
-        <NavLink to="/about">
-         About
-        </NavLink>
+        <Link href="/" className={pathname === "/about" ? "active" : ""}>
+          About
+        </Link>
 
-        <NavLink to="/posts">
-           Jobs
-        </NavLink>
+        <Link href="/" className={pathname === "/posts" ? "active" : ""}>
+          Jobs
+        </Link>
 
-        <NavLink to="/posts">
-           Categories
-        </NavLink>
-        <NavLink to="/users">
-         Users     
-         </NavLink>
+        <Link href="/" className={pathname === "/categories" ? "active" : ""}>
+          Categories
+        </Link>
+        
+        <Link href="/" className={pathname === "/users" ? "active" : ""}>
+          Users     
+        </Link>
          
       </div>
 
       <div className="sidebar-bottom">
 
-        <button onClick={() => navigate("/about")}>
-           Profile
+        {/* Next.js mein router.push use hota hai redirect karne ke liye */}
+        <button onClick={() => router.push("/")}>
+          Profile
         </button>
 
-        <button onClick={() => navigate("/")}>
-           Logout
+        <button onClick={() => router.push("/")}>
+          Logout
         </button>
 
       </div>
