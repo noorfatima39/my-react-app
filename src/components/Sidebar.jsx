@@ -5,52 +5,41 @@ import { useRouter, usePathname } from "next/navigation";
 
 export default function Sidebar() {
   const router = useRouter();
-  const pathname = usePathname(); // Yeh check karega ke kaunsa page active hai
+  const pathname = usePathname();
 
   return (
     <div className="sidebar">
-
-      <h2 className="sidebar-logo">
-        JOBHIVE
-      </h2>
+      <h2 className="sidebar-logo">JOBHIVE</h2>
 
       <div className="sidebar-links">
-
+        {/* Yahan href ko theek kar diya taake sahi pages khulein */}
         <Link href="/" className={pathname === "/" ? "active" : ""}>
           Home
         </Link>
 
-        <Link href="/" className={pathname === "/about" ? "active" : ""}>
+        <Link href="/about" className={pathname === "/about" ? "active" : ""}>
           About
         </Link>
 
-        <Link href="/" className={pathname === "/posts" ? "active" : ""}>
+        <Link href="/posts" className={pathname === "/posts" ? "active" : ""}>
           Jobs
         </Link>
 
-        <Link href="/" className={pathname === "/categories" ? "active" : ""}>
-          Categories
+        <Link href="/users" className={pathname === "/users" ? "active" : ""}>
+          Users
         </Link>
-        
-        <Link href="/" className={pathname === "/users" ? "active" : ""}>
-          Users     
-        </Link>
-         
       </div>
 
       <div className="sidebar-bottom">
-
-        {/* Next.js mein router.push use hota hai redirect karne ke liye */}
-        <button onClick={() => router.push("/")}>
+        {/* Profile aur Logout ke sahi paths set karein jahan aap bhejna chahein */}
+        <button onClick={() => router.push("/profile")}>
           Profile
         </button>
 
-        <button onClick={() => router.push("/")}>
+        <button onClick={() => router.push("/login")}>
           Logout
         </button>
-
       </div>
-
     </div>
   );
 }

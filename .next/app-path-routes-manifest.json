@@ -1,0 +1,12 @@
+{
+  "/_global-error/page": "/_global-error",
+  "/_not-found/page": "/_not-found",
+  "/about/page": "/about",
+  "/api/hello/route": "/api/hello",
+  "/login/page": "/login",
+  "/page": "/",
+  "/posts/[id]/page": "/posts/[id]",
+  "/posts/page": "/posts",
+  "/users/[id]/page": "/users/[id]",
+  "/users/page": "/users"
+}

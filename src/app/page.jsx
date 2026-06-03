@@ -1,49 +1,136 @@
-"use client";
-import React, { useState, useEffect } from "react";
+    "use client";
+import React, { useState } from "react";
 
-
+// Components ko top par import kiya
 import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import Loader from "../components/Loader";
 
-import Login from "../pages/Login";
-import Home from "../pages/Home";
-import About from "../pages/About";
-import Posts from "../pages/Posts";
-import PostDetail from "../pages/PostDetail";
-import NotFound from "../pages/NotFound";
-import Users from "../pages/Users";
-import UserDetails from "../pages/UserDetails";
-export default function App() {
+export default function Page() {
+  // Aapke state hooks yahan aagaye
+  const [showPosts, setShowPosts] = useState(false);
+  const [showLearn, setShowLearn] = useState(false);
 
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 2500);
-  }, []);
-// Agar abhi bhi loading chal rahi hai toh loader dikhayein
-  if (loading) {
-    return <Loader />;
-  }
-
-  // Next.js routing setup bina react-router-dom ke
   return (
-    <div className="main-layout">
-      <Sidebar />
-      <div className="content-area">
-        <Navbar />
+    <div>
+      {/* 1. Website ki main Navbar */}
+      <Navbar />
 
-        {/* Hum standard routing ko simple layout mein handle kar rahe hain */}
-        <main style={{ padding: "20px 0" }}>
-          <Home />
-          {/* Aap temporary check karne ke liye yahan <About />, <Posts /> wagera bhi switch kar ke dekh sakte hain */}
+      {/* 2. Sidebar aur Main Content Layout */}
+      <div style={{ display: "flex" }}>
+        <Sidebar />
+        
+        {/* Aapka asli Home page ka sara content <main> ke andar aagaya */}
+        <main style={{ flex: 1, padding: "20px" }}>
+          <div className="home-page">
+            <div className="hero-section">
+              <div>
+                <p className="small-title">MOST POPULAR JOB PORTAL</p>
+                <h1>
+                  Discover Amazing
+                  <br />
+                  Career Opportunities
+                </h1>
+                <p className="hero-text">
+                  Find top tech careers including React Developer, Cloud Engineer,
+                  UI/UX Designer and Full Stack jobs.
+                </p>
+
+                <div className="hero-buttons">
+                  <button className="hero-btn" onClick={() => setShowPosts(true)}>
+                    Explore Posts
+                  </button>
+                  <button className="outline-btn" onClick={() => setShowLearn(true)}>
+                    Learn More
+                  </button>
+                </div>
+              </div>
+
+              <img
+                src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1920&q=80"
+                alt=""
+                style={{
+                  width: "90%",
+                  height: "300px",
+                  objectFit: "cover",
+                  borderRadius: "10px",
+                }}
+              />
+            </div>
+
+            <div className="feature-grid">
+              <div className="feature-card">120+ Job Offers</div>
+              <div className="feature-card">45K+ Active Users</div>
+              <div className="feature-card">15+ Categories</div>
+            </div>
+
+            {/* --- POSTS POPUP --- */}
+            {showPosts && (
+              <div className="popup-overlay" onClick={() => setShowPosts(false)}>
+                <div className="popup-card" onClick={(e) => e.stopPropagation()}>
+                  <div className="popup-header">
+                    <h2>Trending Job Posts</h2>
+                    <button onClick={() => setShowPosts(false)}>✕</button>
+                  </div>
+
+                  <div className="posts-grid">
+                    <div className="job-card">
+                      <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085" alt="" />
+                      <h3>React Developer</h3>
+                      <p>Frontend developer required for modern UI projects.</p>
+                      <button>Apply Now</button>
+                    </div>
+
+                    <div className="job-card">
+                      <img src="https://images.unsplash.com/photo-1552664730-d307ca884978" alt="" />
+                      <h3>UI/UX Designer</h3>
+                      <p>Create beautiful user experiences and mobile designs.</p>
+                      <button>Apply Now</button>
+                    </div>
+
+                    <div className="job-card">
+                      <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3" alt="" />
+                      <h3>Cloud Engineer</h3>
+                      <p>Manage AWS infrastructure and cloud deployment.</p>
+                      <button>Apply Now</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* --- LEARN MORE POPUP --- */}
+            {showLearn && (
+              <div className="popup-overlay" onClick={() => setShowLearn(false)}>
+                <div className="learn-card" onClick={(e) => e.stopPropagation()}>
+                  <div className="popup-header">
+                    <h2>About JOBHIVE</h2>
+                    <button onClick={() => setShowLearn(false)}>✕</button>
+                  </div>
+
+                  <div className="learn-content">
+                    <div className="learn-box">
+                      <h3>🚀 Modern Jobs</h3>
+                      <p>Find latest tech jobs including React, AI, UI/UX, Full Stack and Cloud Engineering.</p>
+                    </div>
+                    <div className="learn-box">
+                      <h3>💼 Trusted Companies</h3>
+                      <p>Connect with verified companies and startups worldwide.</p>
+                    </div>
+                    <div className="learn-box">
+                      <h3>⚡ Fast Hiring</h3>
+                      <p>Apply instantly with modern hiring experience.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
         </main>
-
-        <Footer />
       </div>
+
+      {/* 3. Website ka Footer */}
+      <Footer />
     </div>
   );
 }
