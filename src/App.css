@@ -270,3 +270,36 @@ button:hover, .hero-btn:hover{
   .hero-buttons { flex-direction: column; width: 100%; }
   .hero-buttons button { width: 100%; }
 }
+@media (max-width: 768px) {
+  /* Forcefully grid layouts ko vertical karo */
+  .main-layout {
+    flex-direction: column !important;
+  }
+
+  /* Desktop ki body layout aur padding khatam karo */
+  .content-area {
+    width: 100% !important;
+    padding: 0 !important;
+  }
+
+  /* Purane desktop sidebar ko forcefully gayab karo jab tak hamburger click na ho */
+  .sidebar {
+    position: fixed !important;
+    top: 68px !important;
+    left: 0 !important;
+    width: 260px !important;
+    height: calc(100vh - 68px) !important;
+    transform: translateX(-100%) !important; /* Screen se bahar rakho */
+    transition: transform 0.3s ease-in-out !important;
+  }
+
+  /* Jab menu open ho toh !important ke sath samne lao */
+  .sidebar.open {
+    transform: translateX(0) !important;
+  }
+
+  /* Mobile header ko strictly unhide karo */
+  .mobile-header {
+    display: flex !important;
+  }
+}
